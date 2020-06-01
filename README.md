@@ -14,6 +14,8 @@ Front-end starter-kit for a MEAN stack app
 
 - i18n (eng/fr)
 - Login Page
+- AuthGuard
+- AuthService
 - Error Interceptor
 - JWT Interceptor
 - Some styling (sorry in advance)
