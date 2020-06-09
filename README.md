@@ -27,7 +27,7 @@ Front-end starter-kit for a MEAN stack app
   npm install
   ```
 - Replace the README.md name/content
-- Change the package.json/package-lock.json "name"
+- Replace "angular-starter-kit" with the name of your application
 - Change the environement.ts "webApiEndPoint" if needed
 - Make sure you have a backend running (see https://github.com/MaxGendron/expressjs-starter-kit if you need one)
 
