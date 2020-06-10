@@ -9,6 +9,6 @@
     "login": {
         "username": "Nom de compte",
         "password": "Mot de passe",
-        "title": "Se connecter à WMS"
+        "title": "Se connecter"
     }
 }
