@@ -7,7 +7,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
 import { JwtInterceptor } from './interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './interceptor/error.interceptor';
 import { MatInputModule } from '@angular/material/input';
@@ -20,23 +19,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { IndexComponent } from './index/index.component';
 import { AuthGuard } from './services/auth.guard';
 import { NavbarComponent } from './navbar/navbar.component'
+import { MatMenuModule } from '@angular/material/menu';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RegisterPopupComponent } from './register-popup/register-popup.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent},
-  { path: 'index', component: IndexComponent, canActivate: [AuthGuard]},
+  { path: '', component: IndexComponent },
+  //{ path: 'index', component: IndexComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     IndexComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginDialogComponent,
+    RegisterPopupComponent
   ],
   imports: [
     FormsModule,
@@ -60,7 +63,9 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
