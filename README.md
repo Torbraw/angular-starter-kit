@@ -29,7 +29,9 @@ Front-end starter-kit for a MEAN stack app
 - Replace the README.md name/content
 - Replace "angular-starter-kit" with the name of your application
 - Change the environement.ts "webApiEndPoint" if needed
-- Make sure you have a backend running (see https://github.com/MaxGendron/expressjs-starter-kit if you need one)
+- Make sure you have a backend running. If you need one, you can choose between those two:
+  - https://github.com/MaxGendron/nestjs-starter-kit (recommended)
+  - https://github.com/MaxGendron/expressjs-starter-kit
 
 ## Run the server
 
