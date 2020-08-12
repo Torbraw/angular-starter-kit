@@ -3,9 +3,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { UserService } from '../services/user.service';
-import { AuthService } from '../services/auth.service';
-import ValidatorUtil, { PasswordErrorStateMatcher } from '../utils/validator-util';
+import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
+import ValidatorUtil, { PasswordErrorStateMatcher } from '../../utils/validator-util';
 
 @Component({
   selector: 'app-register-popup',

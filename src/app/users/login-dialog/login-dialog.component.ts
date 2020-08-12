@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { UserService } from '../services/user.service';
-import { AuthService } from '../services/auth.service';
+import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 import { Validators, FormBuilder } from '@angular/forms';
 import { RegisterPopupComponent } from '../register-popup/register-popup.component';
 
