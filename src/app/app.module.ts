@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component'
 import { LoginDialogComponent } from './users/login-dialog/login-dialog.component';
 import { RegisterPopupComponent } from './users/register-popup/register-popup.component';
 import { AngularMaterialModule } from './angular-material.module';
+import { UsersModule } from './users/users.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes
     ),
-    AngularMaterialModule
+    AngularMaterialModule,
+    UsersModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
