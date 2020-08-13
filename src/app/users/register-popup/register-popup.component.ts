@@ -1,11 +1,13 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Subscription, using } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../user.service';
 import { AuthService } from '../auth.service';
 import ValidatorUtil, { PasswordErrorStateMatcher } from '../../utils/validator-util';
+import { ValidateUserPropertyValueDto, UserPropertyEnum } from '../models/dtos/validate-user-property-value.dto';
+import { NewUserDto } from '../models/dtos/new-user.dto';
 
 @Component({
   selector: 'app-register-popup',
@@ -49,8 +51,9 @@ export class RegisterPopupComponent implements OnInit, OnDestroy {
 
   //Verify the username don't exist
   onUsernameBlur(username: string) {
+    const validateUserPropertyValueDto = new ValidateUserPropertyValueDto(UserPropertyEnum.Username, username);
     this.subscription.add(
-      this.userService.validatePropertyValue('username', username)
+      this.userService.validatePropertyValue(validateUserPropertyValueDto)
       .subscribe(response => {
         if (response.exist) {
           this.registerForm.get('username').setErrors({ exist: true });
@@ -63,8 +66,9 @@ export class RegisterPopupComponent implements OnInit, OnDestroy {
 
   //Verify the email don't exist
   onEmailBlur(email: string) {
+    const validateUserPropertyValueDto = new ValidateUserPropertyValueDto(UserPropertyEnum.Email, email);
     this.subscription.add(
-      this.userService.validatePropertyValue('email', email)
+      this.userService.validatePropertyValue(validateUserPropertyValueDto)
       .subscribe(response => {
         if (response.exist) {
           this.registerForm.get('email').setErrors({ 'exist': true });
@@ -77,10 +81,13 @@ export class RegisterPopupComponent implements OnInit, OnDestroy {
   //Try registering the user
   register(): void {
     this.loading = true;
-
-    this.subscription.add(this.userService.registerUser(this.registerForm.get('username').value,
+    const newUserDto = new NewUserDto(
+      this.registerForm.get('username').value,
+      this.registerForm.get('email').value,
       this.registerForm.get('passwords').get('password').value,
-      this.registerForm.get('email').value )
+    );
+
+    this.subscription.add(this.userService.registerUser(newUserDto)
     .subscribe(response => {
       this.authService.login(response);
       //Close the dialog

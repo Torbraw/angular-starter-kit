@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { LoginDto } from './models/dtos/login.dto';
+import { NewUserDto } from './models/dtos/new-user.dto';
+import { ValidateUserPropertyValueDto } from './models/dtos/validate-user-property-value.dto';
+import { LoggedUserResponseDto } from './models/dtos/responses/logged-user.response.dto';
+import { ExistReponseDto } from './models/dtos/responses/exist.response.dto';
 
 @Injectable()
 export class UserService {
@@ -9,18 +14,16 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  loginUser(username, password) {
-    const userObject = { 'username': username, 'password': password };
-    return this.http.post<any>(environment.webApiEndPoint + this.usersEndpoint + 'login', userObject);
+  loginUser(loginDto: LoginDto) {
+    return this.http.post<LoggedUserResponseDto>(environment.webApiEndPoint + this.usersEndpoint + 'login', loginDto);
   }
 
-  registerUser(username, password, email) {
-    const userObject = { 'username': username, 'password': password, 'email': email };
-    return this.http.post<any>(environment.webApiEndPoint + this.usersEndpoint, userObject);
+  registerUser(newUserDto: NewUserDto) {
+    return this.http.post<LoggedUserResponseDto>(environment.webApiEndPoint + this.usersEndpoint, newUserDto);
   }
 
-  validatePropertyValue(property, value) {
-    const data = {property: property, value: value};
-    return this.http.get<any>(environment.webApiEndPoint + this.usersEndpoint + 'validate', {params: data});
+  validatePropertyValue(validateUserPropertyValueDto: ValidateUserPropertyValueDto) {
+    const data = {property: validateUserPropertyValueDto.property, value: validateUserPropertyValueDto.value};
+    return this.http.get<ExistReponseDto>(environment.webApiEndPoint + this.usersEndpoint + 'validate', {params: data});
   }
 }

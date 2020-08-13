@@ -6,6 +6,7 @@ import { UserService } from '../user.service';
 import { AuthService } from '../auth.service';
 import { Validators, FormBuilder } from '@angular/forms';
 import { RegisterPopupComponent } from '../register-popup/register-popup.component';
+import { LoginDto } from '../models/dtos/login.dto';
 
 @Component({
   selector: 'app-login-dialog',
@@ -45,8 +46,9 @@ export class LoginDialogComponent implements OnDestroy, OnInit {
   //Try to login the user
   login(): void {
     this.loading = true;
-
-    this.subscription.add(this.userService.loginUser(this.loginForm.get('username').value, this.loginForm.get('password').value)
+    const loginDto = new LoginDto(this.loginForm.get('username').value, this.loginForm.get('password').value);
+    
+    this.subscription.add(this.userService.loginUser(loginDto)
       .subscribe(response => {
         this.authService.login(response);
         //Close the dialog
