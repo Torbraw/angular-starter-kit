@@ -6,7 +6,7 @@ import { ErrorInterceptor } from './interceptor/error.interceptor';
 import { IndexComponent } from './index/index.component';
 import { NavbarComponent } from './navbar/navbar.component'
 import { UsersModule } from './users/users.module';
-import { SharedModule } from './shared.module';
+import { SharedModule } from './modules/shared.module';
 
 @NgModule({
   declarations: [
