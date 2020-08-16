@@ -10,7 +10,7 @@ Front-end starter-kit for a MEAN stack app
 - Rxjs
 - Angular Material
 - Prettier (
-```sh npm run format```
+```npm run format```
 )
 
 ### Prebuild code
