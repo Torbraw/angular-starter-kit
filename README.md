@@ -9,6 +9,9 @@ Front-end starter-kit for a MEAN stack app
 - Sweetalert2
 - Rxjs
 - Angular Material
+- Prettier (
+```npm run format```
+)
 
 ### Prebuild code
 
