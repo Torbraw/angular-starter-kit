@@ -120,7 +120,6 @@ export class RegisterPopupComponent implements OnInit, OnDestroy {
           this.authService.login(response);
           //Close the dialog
           this.dialogRef.close();
-          this.loading = false;
         },
         error => {
           //Error handling
@@ -134,8 +133,8 @@ export class RegisterPopupComponent implements OnInit, OnDestroy {
           } else {
             this.error = this.translateService.instant('error.unexpected');
           }
-          this.loading = false;
         },
+        () => this.loading = false
       ),
     );
   }
