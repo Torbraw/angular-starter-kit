@@ -7,7 +7,7 @@ import { UserService } from '../user.service';
 import { AuthService } from '../auth.service';
 import ValidatorUtil, {
   PasswordErrorStateMatcher,
-} from '../../utils/validator-util';
+} from '../../common/utils/validator-util';
 import {
   ValidateUserPropertyValueDto,
   UserPropertyEnum,
