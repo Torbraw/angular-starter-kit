@@ -5,13 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../user.service';
 import { AuthService } from '../auth.service';
-import ValidatorUtil, {
-  PasswordErrorStateMatcher,
-} from '../../common/utils/validator-util';
-import {
-  ValidateUserPropertyValueDto,
-  UserPropertyEnum,
-} from '../models/dtos/validate-user-property-value.dto';
+import ValidatorUtil, { PasswordErrorStateMatcher } from '../../common/utils/validator-util';
+import { ValidateUserPropertyValueDto, UserPropertyEnum } from '../models/dtos/validate-user-property-value.dto';
 import { NewUserDto } from '../models/dtos/new-user.dto';
 
 @Component({
@@ -29,10 +24,7 @@ export class RegisterPopupComponent implements OnInit, OnDestroy {
     username: [this.data.username, Validators.required],
     email: [
       '',
-      Validators.compose([
-        Validators.required,
-        Validators.pattern(/[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,}/i),
-      ]),
+      Validators.compose([Validators.required, Validators.pattern(/[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,}/i)]),
     ],
     passwords: this.fb.group(
       {
@@ -69,39 +61,29 @@ export class RegisterPopupComponent implements OnInit, OnDestroy {
 
   //Verify the username don't exist
   onUsernameBlur(username: string) {
-    const validateUserPropertyValueDto = new ValidateUserPropertyValueDto(
-      UserPropertyEnum.Username,
-      username,
-    );
+    const validateUserPropertyValueDto = new ValidateUserPropertyValueDto(UserPropertyEnum.Username, username);
     this.subscription.add(
-      this.userService
-        .validatePropertyValue(validateUserPropertyValueDto)
-        .subscribe(response => {
-          if (response.exist) {
-            this.registerForm.get('username').setErrors({ exist: true });
-          }
-          //Not subscribing on error because we don't wanna afraid the user for nothing
-          //and the existing account is checked on register, so no worries about sanity
-        }),
+      this.userService.validatePropertyValue(validateUserPropertyValueDto).subscribe(response => {
+        if (response.exist) {
+          this.registerForm.get('username').setErrors({ exist: true });
+        }
+        //Not subscribing on error because we don't wanna afraid the user for nothing
+        //and the existing account is checked on register, so no worries about sanity
+      }),
     );
   }
 
   //Verify the email don't exist
   onEmailBlur(email: string) {
-    const validateUserPropertyValueDto = new ValidateUserPropertyValueDto(
-      UserPropertyEnum.Email,
-      email,
-    );
+    const validateUserPropertyValueDto = new ValidateUserPropertyValueDto(UserPropertyEnum.Email, email);
     this.subscription.add(
-      this.userService
-        .validatePropertyValue(validateUserPropertyValueDto)
-        .subscribe(response => {
-          if (response.exist) {
-            this.registerForm.get('email').setErrors({ exist: true });
-          }
-          //Not subscribing on error because we don't wanna afraid the user for nothing
-          //and the existing account is checked on register, so no worries about sanity
-        }),
+      this.userService.validatePropertyValue(validateUserPropertyValueDto).subscribe(response => {
+        if (response.exist) {
+          this.registerForm.get('email').setErrors({ exist: true });
+        }
+        //Not subscribing on error because we don't wanna afraid the user for nothing
+        //and the existing account is checked on register, so no worries about sanity
+      }),
     );
   }
 

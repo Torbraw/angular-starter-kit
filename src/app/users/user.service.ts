@@ -14,29 +14,20 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   loginUser(loginDto: LoginDto) {
-    return this.http.post<LoggedUserResponseDto>(
-      environment.webApiEndPoint + this.usersEndpoint + 'login',
-      loginDto,
-    );
+    return this.http.post<LoggedUserResponseDto>(environment.webApiEndPoint + this.usersEndpoint + 'login', loginDto);
   }
 
   registerUser(newUserDto: NewUserDto) {
-    return this.http.post<LoggedUserResponseDto>(
-      environment.webApiEndPoint + this.usersEndpoint,
-      newUserDto,
-    );
+    return this.http.post<LoggedUserResponseDto>(environment.webApiEndPoint + this.usersEndpoint, newUserDto);
   }
 
-  validatePropertyValue(
-    validateUserPropertyValueDto: ValidateUserPropertyValueDto,
-  ) {
+  validatePropertyValue(validateUserPropertyValueDto: ValidateUserPropertyValueDto) {
     const data = {
       property: validateUserPropertyValueDto.property,
       value: validateUserPropertyValueDto.value,
     };
-    return this.http.get<ExistReponseDto>(
-      environment.webApiEndPoint + this.usersEndpoint + 'validate',
-      { params: data },
-    );
+    return this.http.get<ExistReponseDto>(environment.webApiEndPoint + this.usersEndpoint + 'validate', {
+      params: data,
+    });
   }
 }

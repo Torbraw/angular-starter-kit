@@ -1,12 +1,8 @@
 <mat-toolbar color="primary">
   <span class="pointer">Angular Starter Kit</span>
   <span class="fill-remaining-space"></span>
-  <span id="switchlang" (click)="switchLang()">{{
-    'button.lang' | translate
-  }}</span>
-  <ng-container
-    *ngIf="!connectedUsername; then notConnected; else connected"
-  ></ng-container>
+  <span id="switchlang" (click)="switchLang()">{{ 'button.lang' | translate }}</span>
+  <ng-container *ngIf="!connectedUsername; then notConnected; else connected"></ng-container>
   <ng-template #notConnected>
     <div class="accent login-container" (click)="openLoginPopup()">
       <span>{{ 'button.login' | translate }}</span>
@@ -17,12 +13,8 @@
       <span>{{ connectedUsername }}<i class="far fa-user-circle"></i></span>
       <mat-menu #accountMenu="matMenu" xPosition="before" class="navbar-menu">
         <!-- Make the routerlink redirecting to my account -->
-        <span mat-menu-item [routerLink]="['']">{{
-          'navbar.account' | translate
-        }}</span>
-        <span mat-menu-item (click)="logout()">{{
-          'button.logout' | translate
-        }}</span>
+        <span mat-menu-item [routerLink]="['']">{{ 'navbar.account' | translate }}</span>
+        <span mat-menu-item (click)="logout()">{{ 'button.logout' | translate }}</span>
       </mat-menu>
     </div>
   </ng-template>
