@@ -9,6 +9,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularMaterialModule } from './angular-material.module';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -37,6 +40,7 @@ const appRoutes: Routes = [
     }),
     RouterModule.forRoot(appRoutes),
     AngularMaterialModule,
+    FontAwesomeModule,
   ],
   exports: [
     FormsModule,
@@ -47,6 +51,11 @@ const appRoutes: Routes = [
     TranslateModule,
     RouterModule,
     AngularMaterialModule,
+    FontAwesomeModule,
   ],
 })
-export class SharedModule {}
+export class SharedModule {  
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas, far);
+  }
+}

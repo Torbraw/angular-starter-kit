@@ -10,7 +10,7 @@
   </ng-template>
   <ng-template #connected>
     <div [matMenuTriggerFor]="accountMenu" class="login-container">
-      <span>{{ connectedUsername }}<i class="far fa-user-circle"></i></span>
+      <span>{{ connectedUsername }}<fa-icon [icon]="['far', 'user-circle']"></fa-icon></span>
       <mat-menu #accountMenu="matMenu" xPosition="before" class="navbar-menu">
         <!-- Make the routerlink redirecting to my account -->
         <span mat-menu-item [routerLink]="['']">{{ 'navbar.account' | translate }}</span>

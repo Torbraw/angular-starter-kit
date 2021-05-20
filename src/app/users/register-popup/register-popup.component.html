@@ -71,12 +71,12 @@
     </div>
   </div>
   <div class="margin-bottom-16 error-div">
-    <span *ngIf="error" class="warning"> <i class="fas fa-exclamation-circle"></i>&nbsp;{{ error }} </span>
+    <span *ngIf="error" class="warning"> <fa-icon icon="exclamation-circle"></fa-icon>&nbsp;{{ error }} </span>
   </div>
   <div mat-dialog-actions align="end">
     <button type="submit" color="accent" mat-raised-button [disabled]="isDisabled()">
       {{ 'button.register' | translate }}
-      <i *ngIf="loading" class="fas fa-circle-notch fa-spin"></i>
+      <fa-icon *ngIf="loading" icon="circle-notch" [spin]="true"></fa-icon>
     </button>
   </div>
 </form>
