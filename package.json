@@ -5,9 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.html\" \"src/**/*.scss\""
   },
   "private": true,
