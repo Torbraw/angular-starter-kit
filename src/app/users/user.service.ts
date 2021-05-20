@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -9,25 +10,21 @@ import { ExistReponseDto } from './models/dtos/responses/exist.response.dto';
 
 @Injectable()
 export class UserService {
-  private usersEndpoint = 'users/';
+  private usersEndpoint = `${environment.webApiEndPoint}users/`;
 
   constructor(private http: HttpClient) {}
 
-  loginUser(loginDto: LoginDto) {
-    return this.http.post<LoggedUserResponseDto>(environment.webApiEndPoint + this.usersEndpoint + 'login', loginDto);
+  loginUser(loginDto: LoginDto): Observable<LoggedUserResponseDto> {
+    return this.http.post<LoggedUserResponseDto>(`${this.usersEndpoint}login`, loginDto);
   }
 
-  registerUser(newUserDto: NewUserDto) {
-    return this.http.post<LoggedUserResponseDto>(environment.webApiEndPoint + this.usersEndpoint, newUserDto);
+  registerUser(newUserDto: NewUserDto): Observable<LoggedUserResponseDto> {
+    return this.http.post<LoggedUserResponseDto>(this.usersEndpoint, newUserDto);
   }
 
-  validatePropertyValue(validateUserPropertyValueDto: ValidateUserPropertyValueDto) {
-    const data = {
-      property: validateUserPropertyValueDto.property,
-      value: validateUserPropertyValueDto.value,
-    };
-    return this.http.get<ExistReponseDto>(environment.webApiEndPoint + this.usersEndpoint + 'validate', {
-      params: data,
+  validatePropertyValue(validateUserPropertyValueDto: ValidateUserPropertyValueDto): Observable<ExistReponseDto> {
+    return this.http.get<ExistReponseDto>(`${this.usersEndpoint}validate`, {
+      params: JSON.parse(JSON.stringify(validateUserPropertyValueDto)),
     });
   }
 }

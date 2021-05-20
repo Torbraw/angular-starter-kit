@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   //Set the user in the localStorage & currentUser
-  login(user) {
+  login(user: LoggedUserResponseDto): void {
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject.next(user);
   }

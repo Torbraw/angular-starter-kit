@@ -60,7 +60,7 @@ export class RegisterPopupComponent implements OnInit, OnDestroy {
   }
 
   //Verify the username don't exist
-  onUsernameBlur(username: string) {
+  onUsernameBlur(username: string): void {
     const validateUserPropertyValueDto = new ValidateUserPropertyValueDto(UserPropertyEnum.Username, username);
     this.subscription.add(
       this.userService.validatePropertyValue(validateUserPropertyValueDto).subscribe(response => {
@@ -74,7 +74,7 @@ export class RegisterPopupComponent implements OnInit, OnDestroy {
   }
 
   //Verify the email don't exist
-  onEmailBlur(email: string) {
+  onEmailBlur(email: string): void {
     const validateUserPropertyValueDto = new ValidateUserPropertyValueDto(UserPropertyEnum.Email, email);
     this.subscription.add(
       this.userService.validatePropertyValue(validateUserPropertyValueDto).subscribe(response => {
