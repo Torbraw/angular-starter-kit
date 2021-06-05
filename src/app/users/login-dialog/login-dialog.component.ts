@@ -64,7 +64,7 @@ export class LoginDialogComponent implements OnDestroy, OnInit {
           //Error handling
           if (error.name === 'NotFound') {
             this.error = this.translateService.instant('error.userNotfound');
-          } else if ((error.name = 'UndefinedParameter')) {
+          } else if (error.name === 'UndefinedParameter') {
             this.error = this.translateService.instant('error.allFields');
           } else {
             this.error = this.translateService.instant('error.unexpected');
