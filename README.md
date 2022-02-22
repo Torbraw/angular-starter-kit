@@ -4,7 +4,7 @@ Front-end starter-kit for a MEAN stack app
 
 ## Content
 
-- Angular v9
+- Angular v12
 - Ngx-translate
 - Sweetalert2
 - Rxjs
